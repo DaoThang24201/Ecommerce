@@ -22,9 +22,11 @@ class ShopController extends Controller
     public function show($id)
     {
         $product = $this->productService->find($id);
+        $relatedProducts = $this->productService->getRelatedProducts($product);
 
         return view('front.shop.show', [
             'product' => $product,
+            'relatedProducts' => $relatedProducts,
         ]);
     }
 

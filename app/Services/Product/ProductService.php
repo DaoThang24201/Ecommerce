@@ -32,4 +32,17 @@ class ProductService extends BaseService implements ProductServiceInterface
 
         return $product;
     }
+
+    public function getRelatedProducts($product, $limit = 4)
+    {
+        return $this->repository->getRelatedProducts($product, $limit);
+    }
+
+    public function getFeaturedProducts()
+    {
+        return [
+            'women' => $this->repository->getFeaturedProductsByCategory(2),
+            'men' => $this->repository->getFeaturedProductsByCategory(1),
+        ];
+    }
 }

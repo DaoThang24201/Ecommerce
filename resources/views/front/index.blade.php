@@ -88,125 +88,56 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active item" data-tag="*" data-category="women">All</li>
+                            <li class="item" data-tag=".Clothing" data-category="women">Clothings</li>
+                            <li class="item" data-tag=".HandBag" data-category="women">HandBag</li>
+                            <li class="item" data-tag=".Shoes" data-category="women">Shoes</li>
+                            <li class="item" data-tag=".Accessories" data-category="women">Accessories</li>
                         </ul>
                     </div>
-                    <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+                    <div class="product-slider owl-carousel women">
+                        @foreach($featuredProducts['women'] as $featuredProduct)
+                            <div class="product-item item {{$featuredProduct->tag}}">
+                                <div class="pi-pic">
+                                    <img src="/front/img/products/{{$featuredProduct->productImages[0]->path}}" alt="">
+                                    @if($featuredProduct->discount)
+                                    <div class="sale">Sale</div>
+                                    @endif
+                                    <div class="icon">
+                                        <i class="icon_heart_alt"></i>
+                                    </div>
+                                    <ul>
+                                        <li class="w-icon active">
+                                            <a href="">
+                                                <i class="icon_bag_alt"></i>
+                                            </a>
+                                        </li>
+                                        <li class="quick-view">
+                                            <a href="{{route('shop.show', $featuredProduct)}}">+ Quick View</a>
+                                        </li>
+                                        <li class="w-icon">
+                                            <a href="">
+                                                <i class="fa fa-random"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
+                                <div class="pi-text">
+                                <div class="category-name">{{$featuredProduct->tag}}</div>
+                                <a href="{{route('shop.show', $featuredProduct)}}">
+                                    <h5>{{$featuredProduct->name}}</h5>
                                 </a>
                                 <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
+                                    @if($featuredProduct->discount != null)
+                                        ${{$featuredProduct->discount}}
+                                        <span>${{$featuredProduct->price}}</span>
+                                    @else
+                                        <span>${{$featuredProduct->price}}</span>
+                                    @endif
                                 </div>
                             </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
                             </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/women-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -255,125 +186,56 @@
                 <div class="col-lg-8 offset-lg-1">
                     <div class="filter-control">
                         <ul>
-                            <li class="active">Clothings</li>
-                            <li>HandBag</li>
-                            <li>Shoes</li>
-                            <li>Accessories</li>
+                            <li class="active item" data-tag="*" data-category="men">All</li>
+                            <li class="item" data-tag=".Clothing" data-category="men">Clothings</li>
+                            <li class="item" data-tag=".HandBag" data-category="men">HandBag</li>
+                            <li class="item" data-tag=".Shoes" data-category="men">Shoes</li>
+                            <li class="item" data-tag=".Accessories" data-category="men">Accessories</li>
                         </ul>
                     </div>
-                    <div class="product-slider owl-carousel">
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/man-2.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
+                    <div class="product-slider owl-carousel men {{$featuredProduct}}">
+                        @foreach($featuredProducts['men'] as $featuredProduct)
+                            <div class="product-item item {{$featuredProduct->tag}}">
+                                <div class="pi-pic">
+                                    <img src="/front/img/products/{{$featuredProduct->productImages[0]->path}}" alt="">
+                                    @if($featuredProduct->discount)
+                                        <div class="sale">Sale</div>
+                                    @endif
+                                    <div class="icon">
+                                        <i class="icon_heart_alt"></i>
+                                    </div>
+                                    <ul>
+                                        <li class="w-icon active">
+                                            <a href="">
+                                                <i class="icon_bag_alt"></i>
+                                            </a>
+                                        </li>
+                                        <li class="quick-view">
+                                            <a href="{{route('shop.show', $featuredProduct)}}">+ Quick View</a>
+                                        </li>
+                                        <li class="w-icon">
+                                            <a href="">
+                                                <i class="fa fa-random"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/man-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
+                                <div class="pi-text">
+                                    <div class="category-name">{{$featuredProduct->tag}}</div>
+                                    <a href="{{route('shop.show', $featuredProduct)}}">
+                                        <h5>{{$featuredProduct->name}}</h5>
+                                    </a>
+                                    <div class="product-price">
+                                        @if($featuredProduct->discount != null)
+                                            ${{$featuredProduct->discount}}
+                                            <span>${{$featuredProduct->price}}</span>
+                                        @else
+                                            <span>${{$featuredProduct->price}}</span>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/man-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="pi-pic">
-                                <img src="/front/img/products/man-1.jpg" alt="">
-                                <div class="sale">Sale</div>
-                                <div class="icon">
-                                    <i class="icon_heart_alt"></i>
-                                </div>
-                                <ul>
-                                    <li class="w-icon active"><a href="">
-                                            <i class="icon_bag_alt"></i>
-                                        </a></li>
-                                    <li class="quick-view"><a href="product.html">+ Quick View</a></li>
-                                    <li class="w-icon"><a href="">
-                                            <i class="fa fa-random"></i>
-                                        </a></li>
-                                </ul>
-                            </div>
-                            <div class="pi-text">
-                                <div class="category-name">Coat</div>
-                                <a href="">
-                                    <h5>Pure Pineaple</h5>
-                                </a>
-                                <div class="product-price">
-                                    $14.88
-                                    <span>$35.88</span>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-3">
