@@ -191,7 +191,6 @@
                             <li class="item" data-tag=".HandBag" data-category="men">HandBag</li>
                             <li class="item" data-tag=".Shoes" data-category="men">Shoes</li>
                             <li class="item" data-tag=".Accessories" data-category="men">Accessories</li>
-                            <li class="item" data-tag=".Accessories" data-category="men">Accessories</li>
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel men {{$featuredProduct}}">
