@@ -4,6 +4,7 @@
 namespace App\Services\Product;
 
 
+use App\Models\ProductCategory;
 use App\Repositories\Product\ProductRepositoryInterface;
 use App\Services\BaseService;
 
@@ -45,4 +46,20 @@ class ProductService extends BaseService implements ProductServiceInterface
             'men' => $this->repository->getFeaturedProductsByCategory(1),
         ];
     }
+
+    public function getProductOnIndex($request)
+    {
+        return $this->repository->getProductOnIndex($request);
+    }
+
+    public function getProductByCategory($categoryName, $request)
+    {
+        return $this->repository->getProductByCategory($categoryName, $request);
+    }
+
+    public function getProductByTag($tagName, $request)
+    {
+        return $this->repository->getProductByTag($tagName, $request);
+    }
+
 }

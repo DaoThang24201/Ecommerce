@@ -13,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/front/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/front/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/front/css/themify-icons.css" type="text/css">
@@ -66,19 +67,21 @@
             <div class="row">
                 <div class="col-lg-2 col-md-2">
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="{{route('home')}}">
                             <img src="/front/img/logo.png" height="25" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-7 col-md-7">
-                    <div class="advanced-search">
-                        <button type="button" class="category-btn">All Categories</button>
-                        <div class="input-group">
-                            <input type="text" placeholder="What do you need?">
-                            <button type="button"><i class="ti-search"></i></button>
+                    <form action="">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">All Categories</button>
+                            <div class="input-group">
+                                <input name="search" value="{{request('search')}}" type="text" placeholder="What do you need?">
+                                <button type="submit"><i class="ti-search"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-3 col-md-3 text-right">
                     <ul class="nav-right">
@@ -89,52 +92,44 @@
                             </a>
                         </li>
                         <li class="cart-icon">
-                            <a href="#">
+                            <a href="{{route('cart.index')}}">
                                 <i class="icon_bag_alt"></i>
-                                <span>3</span>
+                                <span>{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span>
                             </a>
                             <div class="cart-hover">
                                 <div class="select-items">
                                     <table>
                                         <tbody>
-                                        <tr>
-                                            <td class="si-pic"><img src="/front/img/select-product-1.jpg" alt=""></td>
-                                            <td class="si-text">
-                                                <div class="product-selected">
-                                                    <p>$68,88 x 1</p>
-                                                    <h6>Kabino Beside Table</h6>
-                                                </div>
-                                            </td>
-                                            <td class="si-close">
-                                                <i class="ti-close"></i>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="si-pic"><img src="/front/img/select-product-2.jpg" alt=""></td>
-                                            <td class="si-text">
-                                                <div class="product-selected">
-                                                    <p>$68,88 x 1</p>
-                                                    <h6>Kabino Beside Table</h6>
-                                                </div>
-                                            </td>
-                                            <td class="si-close">
-                                                <i class="ti-close"></i>
-                                            </td>
-                                        </tr>
+                                            @foreach(\Gloudemans\Shoppingcart\Facades\Cart::content() as $cart)
+                                                <tr>
+                                                    <td class="si-pic">
+                                                        <img style="height: 70px" src="front/img/products/{{$cart->options->images[0]->path}}" alt="">
+                                                    </td>
+                                                    <td class="si-text">
+                                                        <div class="product-selected">
+                                                            <p>${{number_format($cart->price, 2)}} x {{$cart->qty}}</p>
+                                                            <h6>{{$cart->name}}</h6>
+                                                        </div>
+                                                    </td>
+                                                    <td class="si-close">
+                                                        <i class="ti-close"></i>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="select-total">
-                                    <span>total:</span>
-                                    <h5>$128.88</h5>
+                                    <span>Total:</span>
+                                    <h5>${{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</h5>
                                 </div>
                                 <div class="select-button">
-                                    <a href="shopping-cart.html" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="check-out.html" class="primary-btn checkout-btn">CHECK OUT</a>
+                                    <a href="{{route('cart.index')}}" class="primary-btn view-card">VIEW CARD</a>
+                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
                                 </div>
                             </div>
                         </li>
-                        <li class="cart-price">$128.88</li>
+                        <li class="cart-price">${{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</li>
                     </ul>
                 </div>
             </div>
@@ -160,21 +155,21 @@
             </div>
             <nav class="nav-menu mobile-menu">
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>
-                    <li><a href="#">Colection</a>
+                    <li class="{{(request()->segment(1) == '') ? 'active' : ''}}"><a href="{{route('home')}}">Home</a></li>
+                    <li class="{{(request()->segment(1) == 'shop') ? 'active' : ''}}"><a href="{{route('shop.index')}}">Shop</a></li>
+                    <li class="{{(request()->segment(1) == 'colection') ? 'active' : ''}}"><a href="#">Colection</a>
                         <ul class="dropdown">
                             <li><a href="">Men's</a></li>
                             <li><a href="">Women's</a></li>
                             <li><a href="">Kid's</a></li>
                         </ul>
                     </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">Pages</a>
+                    <li class="{{(request()->segment(1) == 'blog') ? 'active' : ''}}"><a href="">Blog</a></li>
+                    <li class="{{(request()->segment(1) == 'contact') ? 'active' : ''}}"><a href="contact.html">Contact</a></li>
+                    <li class="{{(request()->segment(1) == 'page') ? 'active' : ''}}"><a href="#">Pages</a>
                         <ul class="dropdown">
                             <li><a href="blog-details.html">Blog Details</a></li>
-                            <li><a href="shopping-cart.html">Shopping Cart</a></li>
+                            <li><a href="{{route('cart.index')}}">Shopping Cart</a></li>
                             <li><a href="check-out.html">Checkout</a></li>
                             <li><a href="faq.html">Faq</a></li>
                             <li><a href="register.html">Register</a></li>

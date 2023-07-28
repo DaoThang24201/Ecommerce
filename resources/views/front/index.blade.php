@@ -96,47 +96,8 @@
                         </ul>
                     </div>
                     <div class="product-slider owl-carousel women">
-                        @foreach($featuredProducts['women'] as $featuredProduct)
-                            <div class="product-item item {{$featuredProduct->tag}}">
-                                <div class="pi-pic">
-                                    <img src="/front/img/products/{{$featuredProduct->productImages[0]->path}}" alt="">
-                                    @if($featuredProduct->discount)
-                                    <div class="sale">Sale</div>
-                                    @endif
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active">
-                                            <a href="">
-                                                <i class="icon_bag_alt"></i>
-                                            </a>
-                                        </li>
-                                        <li class="quick-view">
-                                            <a href="{{route('shop.show', $featuredProduct)}}">+ Quick View</a>
-                                        </li>
-                                        <li class="w-icon">
-                                            <a href="">
-                                                <i class="fa fa-random"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                <div class="category-name">{{$featuredProduct->tag}}</div>
-                                <a href="{{route('shop.show', $featuredProduct)}}">
-                                    <h5>{{$featuredProduct->name}}</h5>
-                                </a>
-                                <div class="product-price">
-                                    @if($featuredProduct->discount != null)
-                                        ${{$featuredProduct->discount}}
-                                        <span>${{$featuredProduct->price}}</span>
-                                    @else
-                                        <span>${{$featuredProduct->price}}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            </div>
+                        @foreach($featuredProducts['women'] as $product)
+                            @include('front.components.product-item')
                         @endforeach
                     </div>
                 </div>
@@ -193,48 +154,9 @@
                             <li class="item" data-tag=".Accessories" data-category="men">Accessories</li>
                         </ul>
                     </div>
-                    <div class="product-slider owl-carousel men {{$featuredProduct}}">
-                        @foreach($featuredProducts['men'] as $featuredProduct)
-                            <div class="product-item item {{$featuredProduct->tag}}">
-                                <div class="pi-pic">
-                                    <img src="/front/img/products/{{$featuredProduct->productImages[0]->path}}" alt="">
-                                    @if($featuredProduct->discount)
-                                        <div class="sale">Sale</div>
-                                    @endif
-                                    <div class="icon">
-                                        <i class="icon_heart_alt"></i>
-                                    </div>
-                                    <ul>
-                                        <li class="w-icon active">
-                                            <a href="">
-                                                <i class="icon_bag_alt"></i>
-                                            </a>
-                                        </li>
-                                        <li class="quick-view">
-                                            <a href="{{route('shop.show', $featuredProduct)}}">+ Quick View</a>
-                                        </li>
-                                        <li class="w-icon">
-                                            <a href="">
-                                                <i class="fa fa-random"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="pi-text">
-                                    <div class="category-name">{{$featuredProduct->tag}}</div>
-                                    <a href="{{route('shop.show', $featuredProduct)}}">
-                                        <h5>{{$featuredProduct->name}}</h5>
-                                    </a>
-                                    <div class="product-price">
-                                        @if($featuredProduct->discount != null)
-                                            ${{$featuredProduct->discount}}
-                                            <span>${{$featuredProduct->price}}</span>
-                                        @else
-                                            <span>${{$featuredProduct->price}}</span>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="product-slider owl-carousel men">
+                        @foreach($featuredProducts['men'] as $product)
+                            @include('front.components.product-item')
                         @endforeach
                     </div>
                 </div>
@@ -299,69 +221,29 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="/front/img/latest-1.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2023
+                @foreach($blogs as $blog)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-latest-blog">
+                            <img src="/front/img/blog/{{$blog->image}}" alt="">
+                            <div class="latest-text">
+                                <div class="tag-list">
+                                    <div class="tag-item">
+                                        <i class="fa fa-calendar-o"></i>
+                                        {{date('M d, Y', strtotime($blog->created_at))}}
+                                    </div>
+                                    <div class="tag-item">
+                                        <i class="fa fa-comment-o"></i>
+                                        {{count($blog->blogComments)}}
+                                    </div>
                                 </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
+                                <a href="">
+                                    <h4>{{$blog->title}}</h4>
+                                </a>
+                                <p>{{$blog->subtitle}}</p>
                             </div>
-                            <a href="">
-                                <h4>The Best Street Style From London Week</h4>
-                            </a>
-                            <p>Nice two level apartment in great London location. Located in quiet small street, but just 50 meters from main street and bus stop. Tube station is short walk, just like two grocery stores.</p>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="/front/img/latest-1.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2023
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="">
-                                <h4>The Best Street Style From London Week</h4>
-                            </a>
-                            <p>Nice two level apartment in great London location. Located in quiet small street, but just 50 meters from main street and bus stop. Tube station is short walk, just like two grocery stores.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-latest-blog">
-                        <img src="/front/img/latest-1.jpg" alt="">
-                        <div class="latest-text">
-                            <div class="tag-list">
-                                <div class="tag-item">
-                                    <i class="fa fa-calendar-o"></i>
-                                    May 4,2023
-                                </div>
-                                <div class="tag-item">
-                                    <i class="fa fa-comment-o"></i>
-                                    5
-                                </div>
-                            </div>
-                            <a href="">
-                                <h4>The Best Street Style From London Week</h4>
-                            </a>
-                            <p>Nice two level apartment in great London location. Located in quiet small street, but just 50 meters from main street and bus stop. Tube station is short walk, just like two grocery stores.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="benefit-items">
                 <div class="row">

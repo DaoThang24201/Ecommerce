@@ -1574,6 +1574,7 @@ ol {
 
 .footer-widget ul li {
 	list-style: none;
+    color: #b2b2b2;
 }
 
 .footer-widget ul li a {
@@ -2006,14 +2007,14 @@ ol {
 	padding-right: 105px;
 }
 
-.product-show-option .select-option .p-show.nice-select:before {
-	position: absolute;
-	right: 48px;
-	top: 0;
-	content: "09";
-	font-size: 16px;
-	color: #252525;
-}
+/*.product-show-option .select-option .p-show.nice-select:before {*/
+/*	position: absolute;*/
+/*	right: 48px;*/
+/*	top: 0;*/
+/*	content: "09";*/
+/*	font-size: 16px;*/
+/*	color: #252525;*/
+/*}*/
 
 .product-show-option p {
 	margin-bottom: 0;
