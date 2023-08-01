@@ -29,21 +29,60 @@ class CartController extends Controller
         ]);
     }
 
-    public function add($id)
+    public function add(Request $request)
     {
-        $product = $this->productService->find($id);
+        if ($request->ajax()) {
+            $product = $this->productService->find($request->productId);
 
-        Cart::add([
-            'id' => $product->id,
-            'name' => $product->name,
-            'qty' => 1,
-            'price' => $product->discount ?? $product->price,
-            'weight' => $product->weight ?? 0,
-            'options' => [
-                'images' => $product->productImages,
-            ],
-        ]);
+            $response['cart'] = Cart::add([
+                'id' => $product->id,
+                'name' => $product->name,
+                'qty' => 1,
+                'price' => $product->discount ?? $product->price,
+                'weight' => $product->weight ?? 0,
+                'options' => [
+                    'images' => $product->productImages,
+                ],
+            ]);
+
+            $response['count'] = Cart::count();
+            $response['total'] = Cart::total();
+
+            return $response;
+        }
 
         return back();
+    }
+
+    public function delete(Request $request)
+    {
+        if ($request->ajax()) {
+            $response['cart'] = Cart::remove($request->rowId);
+
+            $response['count'] = Cart::count();
+            $response['total'] = Cart::total();
+            $response['subtotal'] = Cart::subtotal();
+
+            return $response;
+        }
+        return back();
+    }
+
+    public function destroy()
+    {
+        Cart::destroy();
+    }
+
+    public function update(Request $request)
+    {
+        if ($request->ajax())
+        {
+            $response['cart'] = Cart::update($request->rowId, $request->qty);
+            $response['count'] = Cart::count();
+            $response['total'] = Cart::total();
+            $response['subtotal'] = Cart::subtotal();
+
+            return $response;
+        }
     }
 }

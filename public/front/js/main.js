@@ -249,6 +249,10 @@
 			}
 		}
 		$button.parent().find('input').val(newVal);
+
+		//Update Cart
+        var rowId = $button.parent().find('input').data('rowid');
+        updateCart(rowId, newVal);
 	});
 
     /*-------------------

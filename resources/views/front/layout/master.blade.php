@@ -46,7 +46,18 @@
                 </div>
             </div>
             <div class="ht-right">
-                <a href="login.html" class="login-panel"><i class="fa fa-user"></i>Login</a>
+
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <a href="{{route('account.logout')}}" class="login-panel">
+                        <i class="fa fa-user"></i>
+                        {{\Illuminate\Support\Facades\Auth::user()->name}} -
+                        <button class="btn btn-secondary pt-0 pb-0">Logout</button>
+                    </a>
+                @else
+                    <a href="{{route('account.login')}}" class="login-panel"><i class="fa fa-user"></i>Login</a>
+                @endif
+
+
                 <div class="lan-selector">
                     <select name="countries" id="countries" style="width: 300px" class="language_drop">
                         <option value="yt" data-image="/front/img/flag-1.jpg" data-imagecss="flag yt" data-title="English">English</option>
@@ -91,45 +102,8 @@
                                 <span>1</span>
                             </a>
                         </li>
-                        <li class="cart-icon">
-                            <a href="{{route('cart.index')}}">
-                                <i class="icon_bag_alt"></i>
-                                <span>{{\Gloudemans\Shoppingcart\Facades\Cart::count()}}</span>
-                            </a>
-                            <div class="cart-hover">
-                                <div class="select-items">
-                                    <table>
-                                        <tbody>
-                                            @foreach(\Gloudemans\Shoppingcart\Facades\Cart::content() as $cart)
-                                                <tr>
-                                                    <td class="si-pic">
-                                                        <img style="height: 70px" src="front/img/products/{{$cart->options->images[0]->path}}" alt="">
-                                                    </td>
-                                                    <td class="si-text">
-                                                        <div class="product-selected">
-                                                            <p>${{number_format($cart->price, 2)}} x {{$cart->qty}}</p>
-                                                            <h6>{{$cart->name}}</h6>
-                                                        </div>
-                                                    </td>
-                                                    <td class="si-close">
-                                                        <i class="ti-close"></i>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="select-total">
-                                    <span>Total:</span>
-                                    <h5>${{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</h5>
-                                </div>
-                                <div class="select-button">
-                                    <a href="{{route('cart.index')}}" class="primary-btn view-card">VIEW CARD</a>
-                                    <a href="#" class="primary-btn checkout-btn">CHECK OUT</a>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="cart-price">${{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</li>
+
+                        @include('front.components.cart-hover')
                     </ul>
                 </div>
             </div>
@@ -168,12 +142,13 @@
                     <li class="{{(request()->segment(1) == 'contact') ? 'active' : ''}}"><a href="contact.html">Contact</a></li>
                     <li class="{{(request()->segment(1) == 'page') ? 'active' : ''}}"><a href="#">Pages</a>
                         <ul class="dropdown">
+                            <li><a href="{{route('account.myOrder.index')}}">My Order</a></li>
                             <li><a href="blog-details.html">Blog Details</a></li>
                             <li><a href="{{route('cart.index')}}">Shopping Cart</a></li>
-                            <li><a href="check-out.html">Checkout</a></li>
+                            <li><a href="{{route('checkout.index')}}">Checkout</a></li>
                             <li><a href="faq.html">Faq</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="login.html">Login</a></li>
+                            <li><a href="{{route('account.register')}}">Register</a></li>
+                            <li><a href="{{route('account.login')}}">Login</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -313,6 +288,164 @@
 <script src="/front/js/owl.carousel.min.js"></script>
 <script src="/front/js/owlcarousel2-filter.min.js"></script>
 <script src="/front/js/main.js"></script>
+
+<script>
+
+    function addCart(productId) {
+        $.ajax({
+            type: 'GET',
+            url: 'cart/add',
+            data: {productId: productId},
+            success: function (response) {
+                $('.cart-count').text(response['count']);
+                $('.cart-price').text('$' + response['total']);
+                $('.select-total h5').text('$' + response['total']);
+
+                var cartHover_tbody = $('.select-items tbody');
+                var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId ='" + response['cart'].rowId + "']");
+
+                if (cartHover_existItem.length) {
+                    cartHover_existItem.find('.product-selected p').text('$' + response['cart'].price.toFixed(2) + ' x ' + response['cart'].qty);
+                } else {
+                    var newItem =
+                        '<tr data-rowId="' + response['cart'].rowId + '">\n' +
+                        '   <td class="si-pic">\n' +
+                        '       <img style="height: 70px" src="front/img/products/' + response['cart'].options.images[0].path + '" alt="">\n' +
+                        '   </td>\n' +
+                        '   <td class="si-text">\n' +
+                        '       <div class="product-selected">\n' +
+                        '           <p>$' + response['cart'].price.toFixed(2) + ' x ' + response['cart'].qty + '</p>\n' +
+                        '           <h6>' + response['cart'].name + '</h6>\n' +
+                        '       </div>\n' +
+                        '   </td>\n' +
+                        '   <td class="si-close">\n' +
+                        '       <i onclick="removeCart(\'' + response['cart'].rowId + '\')" class="ti-close"></i>\n' +
+                        '   </td>\n' +
+                        '</tr>';
+
+                    cartHover_tbody.append(newItem);
+                }
+
+                alert('Add successful! \nProduct: ' + response['cart'].name)
+                console.log(response);
+            },
+            error: function (response) {
+                alert('Add failed.');
+                console.log(response);
+            },
+
+        });
+    }
+
+    function removeCart(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: 'cart/delete',
+            data: {rowId: rowId},
+            success: function (response) {
+                //Hover
+                $('.cart-count').text(response['count']);
+                $('.cart-price').text('$' + response['total']);
+                $('.select-total h5').text('$' + response['total']);
+
+                var cartHover_tbody = $('.select-items tbody');
+                var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId ='" + rowId + "']");
+                cartHover_existItem.remove();
+
+                //Cart
+                var cart_tbody = $('.cart-table tbody');
+                var cart_existItem = cart_tbody.find("tr" + "[data-rowId ='" + rowId + "']");
+                cart_existItem.remove();
+
+                alert('Delete successful! \nProduct: ' + response['cart'].name)
+                console.log(response);
+            },
+            error: function (response) {
+                alert('Delete failed.');
+                console.log(response);
+            },
+
+        });
+    }
+
+    function destroyCart() {
+        $.ajax({
+            type: 'GET',
+            url: 'cart/destroy',
+            data: {},
+            success: function (response) {
+                //Hover
+                $('.cart-count').text('0');
+                $('.cart-price').text('0');
+                $('.select-total h5').text('0');
+
+                var cartHover_tbody = $('.select-items tbody');
+                cartHover_tbody.children().remove();
+
+                //Cart
+                var cart_tbody = $('.cart-table tbody');
+                cart_tbody.children().remove();
+
+                $('.subtotal span').text('0');
+                $('.cart-total span').text('0');
+
+                alert('Delete successful!')
+                console.log(response);
+            },
+            error: function (response) {
+                alert('Delete failed.');
+                console.log(response);
+            },
+
+        });
+    }
+
+    function updateCart(rowId, qty) {
+        $.ajax({
+            type: 'GET',
+            url: 'cart/update',
+            data: {rowId: rowId, qty: qty},
+            success: function (response) {
+                //Hover
+                $('.cart-count').text(response['count']);
+                $('.cart-price').text('$' + response['total']);
+                $('.select-total h5').text('$' + response['total']);
+
+                var cartHover_tbody = $('.select-items tbody');
+                var cartHover_existItem = cartHover_tbody.find("tr" + "[data-rowId ='" + rowId + "']");
+
+                if(qty === 0) {
+                    cartHover_existItem.remove();
+                } else {
+                    cartHover_existItem.find('.product-selected').text('$' + response['cart'].price.toFixed(2) + ' x ' + response['cart'].qty);
+                }
+
+
+                //Cart
+                var cart_tbody = $('.cart-table tbody');
+                var cart_existItem = cart_tbody.find("tr" + "[data-rowId ='" + rowId + "']");
+
+                if(qty === 0) {
+                    cart_existItem.remove();
+                } else {
+                    cart_existItem.find('.total-price').text('$' + (response['cart'].price * response['cart'].qty).toFixed(2));
+                }
+
+                $('.subtotal span').text('$' + response['subtotal'])
+                $('.cart-total span').text('$' + response['total'])
+
+                alert('Update successful! \nProduct: ' + response['cart'].name)
+                console.log(response);
+            },
+            error: function (response) {
+                alert('Update failed.');
+                console.log(response);
+            },
+
+        });
+    }
+
+</script>
 </body>
 
 </html>

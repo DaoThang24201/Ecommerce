@@ -11,7 +11,7 @@
         </div>
         <ul>
             <li class="w-icon active">
-                <a href="{{route('cart.add', $product)}}">
+                <a href="javascript:addCart({{$product->id}})">
                     <i class="icon_bag_alt"></i>
                 </a>
             </li>
