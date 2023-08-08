@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductCategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Front\AccountController;
 use App\Http\Controllers\Front\CartController;
@@ -82,6 +84,23 @@ Route::prefix('account')->name('account.')->group( function () {
 
 //Dashboard- Admin
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('CheckAdminLogin')->name('admin.')->group(function () {
+
+    Route::redirect('', 'admin/user');
+
     Route::resource('user', UserController::class);
+
+    Route::resource('category', ProductCategoryController::class);
+
+    Route::resource('brand', BrandController::class);
+
+    Route::prefix('login')->group(function () {
+
+        Route::get('', [\App\Http\Controllers\Admin\HomeController::class, 'getLogin'])->withoutMiddleware('CheckAdminLogin')->name('login');
+
+        Route::post('', [\App\Http\Controllers\Admin\HomeController::class, 'postLogin'])->withoutMiddleware('CheckAdminLogin');
+
+    });
+
+    Route::get('logout', [\App\Http\Controllers\Admin\HomeController::class, 'logout'])->name('logout');
 });

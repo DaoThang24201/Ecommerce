@@ -11,10 +11,8 @@ use Illuminate\Http\Request;
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
 
-    function getModel()
+    public function getModel()
     {
         return User::class;
     }
-
-
 }

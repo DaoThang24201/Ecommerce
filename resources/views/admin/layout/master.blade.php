@@ -6,10 +6,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Admin - @yield('title')</title>
     <meta name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
+          content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
     <meta name="description"
           content="This is an example dashboard (CodeLean) created using build-in elements and components.">
 
@@ -179,7 +179,8 @@
                                 <div class="scrollbar-container">
                                     <h6 tabindex="-1" class="dropdown-header">Key Figures</h6>
                                     <button type="button" tabindex="0" class="dropdown-item">Service
-                                        Calendar</button>
+                                        Calendar
+                                    </button>
                                     <button type="button" tabindex="0" class="dropdown-item">Knowledge Base</button>
                                     <button type="button" tabindex="0" class="dropdown-item">Accounts</button>
                                     <div tabindex="-1" class="dropdown-divider"></div>
@@ -429,57 +430,65 @@
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/1.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/1.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/2.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/2.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/3.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/3.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/4.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/4.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/5.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/5.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/9.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/9.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/7.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/7.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
                                                                                 class="avatar-icon-wrapper avatar-icon-sm">
                                                                                 <div class="avatar-icon">
-                                                                                    <img src="dashboard/assets/images/avatars/8.jpg"
-                                                                                         alt="">
+                                                                                    <img
+                                                                                        src="dashboard/assets/images/avatars/8.jpg"
+                                                                                        alt="">
                                                                                 </div>
                                                                             </div>
                                                                             <div
@@ -750,7 +759,8 @@
                                 <li class="nav-item-divider nav-item"></li>
                                 <li class="nav-item-btn text-center nav-item">
                                     <button class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View Latest
-                                        Changes</button>
+                                        Changes
+                                    </button>
                                 </li>
                             </ul>
                         </div>
@@ -858,7 +868,8 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                        class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="dashboard/assets/images/avatars/1.jpg"
+                                        <img width="42" class="rounded-circle"
+                                             src="dashboard/assets/images/avatars/{{\Illuminate\Support\Facades\Auth::user()->avatar ?? 'default-user.png'}}"
                                              alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
@@ -874,16 +885,15 @@
                                                         <div class="widget-content-wrapper">
                                                             <div class="widget-content-left mr-3">
                                                                 <img width="42" class="rounded-circle"
-                                                                     src="dashboard/assets/images/avatars/1.jpg" alt="">
+                                                                     src="dashboard/assets/images/avatars/{{Auth::user()->avatar ?? 'default-user.png'}}"
+                                                                     alt="">
                                                             </div>
                                                             <div class="widget-content-left">
-                                                                <div class="widget-heading">Alina Mcloughlin</div>
-                                                                <div class="widget-subheading opacity-8">A short
-                                                                    profile description</div>
+                                                                <div class="widget-heading">{{Auth::user()->name ?? ''}}</div>
+                                                                <div class="widget-subheading opacity-8">{{Auth::user()->email ?? ''}}</div>
                                                             </div>
                                                             <div class="widget-content-right mr-2">
-                                                                <button
-                                                                    class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</button>
+                                                                <a href="{{route('admin.logout')}}" class="btn-pill btn-shadow btn-shine btn btn-focus">Logout</a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -956,8 +966,8 @@
                                 </div>
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
-                                <div class="widget-heading"> Alina Mclourd </div>
-                                <div class="widget-subheading"> VP People Manager </div>
+                                <div class="widget-heading"> {{Auth::user()->name ?? ''}} </div>
+                                <div class="widget-subheading"> {{Auth::user()->email ?? ''}} </div>
                             </div>
                             <div class="widget-content-right header-user-info ml-3">
                                 <button type="button"
@@ -1004,7 +1014,8 @@
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Fixed Header</div>
                                             <div class="widget-subheading">Makes the header top fixed, always
-                                                visible!</div>
+                                                visible!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1024,7 +1035,8 @@
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Fixed Sidebar</div>
                                             <div class="widget-subheading">Makes the sidebar left fixed, always
-                                                visible!</div>
+                                                visible!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1044,7 +1056,8 @@
                                         <div class="widget-content-left">
                                             <div class="widget-heading">Fixed Footer</div>
                                             <div class="widget-subheading">Makes the app footer bottom fixed, always
-                                                visible!</div>
+                                                visible!
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -1052,7 +1065,7 @@
                         </ul>
                     </div>
                     <h3 class="themeoptions-heading">
-                        <div> Header Options </div>
+                        <div> Header Options</div>
                         <button type="button"
                                 class="btn-pill btn-shadow btn-wide ml-auto btn btn-focus btn-sm switch-header-cs-class"
                                 data-class="">
@@ -1336,7 +1349,8 @@
                         <div>Main Content Options</div>
                         <button type="button"
                                 class="btn-pill btn-shadow btn-wide ml-auto active btn btn-focus btn-sm">Restore
-                            Default</button>
+                            Default
+                        </button>
                     </h3>
                     <div class="p-3">
                         <ul class="list-group">
@@ -1384,10 +1398,12 @@
                                     <div role="group" class="mt-2 btn-group">
                                         <button type="button"
                                                 class="btn-wide btn-shadow btn-primary btn btn-secondary switch-theme-class"
-                                                data-class="body-tabs-line"> Line</button>
+                                                data-class="body-tabs-line"> Line
+                                        </button>
                                         <button type="button"
                                                 class="btn-wide btn-shadow btn-primary active btn btn-secondary switch-theme-class"
-                                                data-class="body-tabs-shadow"> Shadow </button>
+                                                data-class="body-tabs-shadow"> Shadow
+                                        </button>
                                     </div>
                                 </div>
                             </li>
@@ -1398,10 +1414,12 @@
                                     <div role="group" class="mt-2 btn-group">
                                         <button type="button"
                                                 class="btn-wide btn-shadow btn-primary active btn btn-secondary switch-theme-class"
-                                                data-class="app-theme-white"> White Theme</button>
+                                                data-class="app-theme-white"> White Theme
+                                        </button>
                                         <button type="button"
                                                 class="btn-wide btn-shadow btn-primary btn btn-secondary switch-theme-class"
-                                                data-class="app-theme-gray"> Gray Theme</button>
+                                                data-class="app-theme-gray"> Gray Theme
+                                        </button>
                                     </div>
                                 </div>
                             </li>
@@ -1458,7 +1476,7 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="{{route('admin.user.index')}}" class="mm-active">
+                                    <a href="{{route('admin.user.index')}}" class="{{request()->segment(2) == 'user' ? 'mm-active' : ''}}">
                                         <i class="metismenu-icon"></i>User
                                     </a>
                                 </li>
@@ -1473,12 +1491,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{--{{route('admin.category.index')}}--}}">
+                                    <a href="{{route('admin.category.index')}}" class="{{request()->segment(2) == 'category' ? 'mm-active' : ''}}">
                                         <i class="metismenu-icon"></i>Category
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{--{{route('admin.brand.index')}}--}}">
+                                    <a href="{{route('admin.brand.index')}}" class="{{request()->segment(2) == 'brand' ? 'mm-active' : ''}}">
                                         <i class="metismenu-icon"></i>Brand
                                     </a>
                                 </li>
@@ -1504,7 +1522,8 @@
                                        class="dot-btn-wrapper">
                                         <i class="dot-btn-icon lnr-bullhorn icon-gradient bg-mean-fruit"></i>
                                         <div class="badge badge-dot badge-abs badge-dot-sm badge-danger">
-                                            Notifications</div>
+                                            Notifications
+                                        </div>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu-xl rm-pointers dropdown-menu">
@@ -1611,64 +1630,72 @@
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/1.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/1.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/2.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/2.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/3.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/3.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/4.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/4.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/5.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/5.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/9.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/9.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/7.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/7.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
                                                                                             class="avatar-icon-wrapper avatar-icon-sm">
                                                                                             <div
                                                                                                 class="avatar-icon">
-                                                                                                <img src="dashboard/assets/images/avatars/8.jpg"
-                                                                                                     alt="">
+                                                                                                <img
+                                                                                                    src="dashboard/assets/images/avatars/8.jpg"
+                                                                                                    alt="">
                                                                                             </div>
                                                                                         </div>
                                                                                         <div
@@ -1980,7 +2007,8 @@
                                             <li class="nav-item-btn text-center nav-item">
                                                 <button
                                                     class="btn-shadow btn-wide btn-pill btn btn-focus btn-sm">View
-                                                    Latest Changes</button>
+                                                    Latest Changes
+                                                </button>
                                             </li>
                                         </ul>
                                     </div>
@@ -2032,7 +2060,8 @@
                                        data-toggle="dropdown" aria-expanded="false">
                                         <i class="dot-btn-icon lnr-pie-chart icon-gradient bg-love-kiss"></i>
                                         <div class="badge badge-dot badge-abs badge-dot-sm badge-warning">
-                                            Notifications</div>
+                                            Notifications
+                                        </div>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu-xl rm-pointers dropdown-menu">
@@ -2108,7 +2137,8 @@
                                                                         <span>Incidents</span>
                                                                         <div
                                                                             class="ml-auto badge badge-pill badge-danger">
-                                                                            5</div>
+                                                                            5
+                                                                        </div>
                                                                     </a>
                                                                 </li>
                                                                 <li class="nav-item">
@@ -2128,7 +2158,8 @@
                                                         <div class="col-sm-6 col-xl-6">
                                                             <ul class="nav flex-column">
                                                                 <li class="nav-item-header nav-item">Sales &amp;
-                                                                    Marketing</li>
+                                                                    Marketing
+                                                                </li>
                                                                 <li class="nav-item"><a class="nav-link">Queues</a>
                                                                 </li>
                                                                 <li class="nav-item"><a class="nav-link">Resource
@@ -2212,7 +2243,8 @@
                                                     </div>
                                                     <div class="float-right">
                                                         <button class="btn-shadow btn btn-info btn-sm">Info
-                                                            Button</button>
+                                                            Button
+                                                        </button>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -2443,12 +2475,15 @@
                                                  class="dropdown-menu dropdown-menu-right">
                                                 <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                                 <button type="button" disabled="" tabindex="-1"
-                                                        class="disabled dropdown-item">Action</button>
+                                                        class="disabled dropdown-item">Action
+                                                </button>
                                                 <button type="button" tabindex="0" class="dropdown-item">Another
-                                                    Action</button>
+                                                    Action
+                                                </button>
                                                 <div tabindex="-1" class="dropdown-divider"></div>
                                                 <button type="button" tabindex="0" class="dropdown-item">Another
-                                                    Action</button>
+                                                    Action
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -2497,7 +2532,7 @@
                                     <div class="widget-content-left mr-3">
                                         <div class="widget-content-left">
                                             <img width="42" class="rounded" src="dashboard/assets/images/avatars/1.jpg"
-                                                 alt="" />
+                                                 alt=""/>
                                         </div>
                                     </div>
                                     <div class="widget-content-left">
